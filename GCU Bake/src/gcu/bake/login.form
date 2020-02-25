@@ -61,7 +61,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
         <Property name="label" type="java.lang.String" value="Sign In"/>
       </Properties>
       <Events>
