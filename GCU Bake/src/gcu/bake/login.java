@@ -84,7 +84,7 @@ public class login extends javax.swing.JFrame {
         
         //for
         String p = new String (passwordField.getPassword());
-        if (emailField.getText().equals("meme") && p.equals("bb")) {
+        if (emailField.getText().equals("xx") && p.equals("bb")) {
             JOptionPane.showMessageDialog(null,"Login Succesfull");
         } 
         else {
@@ -98,6 +98,9 @@ public class login extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        Administrators admin;
+        admin = new Administrators ("smth@gmail.com", "password", "Adam", "Kaczmarski", null);
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

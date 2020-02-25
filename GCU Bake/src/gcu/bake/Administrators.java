@@ -5,6 +5,14 @@
  */
 package gcu.bake;
 
+import static gcu.bake.Customers.appendStrToFile;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+
 /**
  *
  * @author akaczm200
@@ -29,6 +37,16 @@ public class Administrators {
         ALastName = lname;
         APhoneNo = ph;
         ACounter++;
+        
+        try {
+            /*Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("users.txt"), "utf-8"));
+            writer.write(email+";"+pswd+";"+"5"); writer.write(System.getProperty("line.separator"));
+            writer.close();*/
+        String str = (email+";"+pswd+";"+"5"); 
+        appendStrToFile("users.txt", str); 
+        } catch (Exception e){
+         e.printStackTrace();  
+        }
     }
     //***********************
     
@@ -38,6 +56,12 @@ public class Administrators {
     }
     public int getAdminID(){
         return this.AdminID;
+    }
+    public String getAEmail(){
+        return this.AEmail;
+    }
+    public String getAPassword(){
+        return this.APassword;
     }
     //***********************
     
@@ -62,6 +86,22 @@ public class Administrators {
         
     }
     */
+        public static void appendStrToFile(String fileName, 
+                                       String str) 
+    { 
+        try { 
+  
+            // Open given file in append mode. 
+            BufferedWriter out = new BufferedWriter( 
+                   new FileWriter(fileName, true)); 
+            out.write(str);
+            out.write(System.getProperty("line.separator"));
+            out.close(); 
+        } 
+        catch (IOException e) { 
+            System.out.println("exception occoured" + e); 
+        } 
+    } 
     //*******************
 }
   

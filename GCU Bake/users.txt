@@ -1,0 +1,3 @@
+smth@gmail.com;password;5
+doopa@gmail.com;kasjd;2
+sada;jsk@gmail.com;0

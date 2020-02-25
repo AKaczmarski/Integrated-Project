@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package gcu.bake;
-
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 /**
  *
  * @author akaczm200
@@ -16,21 +19,35 @@ public class GCUBake {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
+        
         Administrators admin;
         admin = new Administrators ("smth@gmail.com", "password", "Adam", "Kaczmarski", null);
-        Administrators admin2;
-        admin2 = new Administrators ("smth@gmail.com", "password", "Adam", "Kaczmarski", null);
-        Administrators admin32;
-        admin32 = new Administrators ("smth@gmail.com", "password", "Adam", "Kaczmarski", null);
+        
         System.out.println(admin.getAdminID());
-        System.out.println(admin32.getAdminID());
+        
         
        // admin.addChef("doopa@gmail.com", null, null, null);
         Chefs chef;
-        chef = new Chefs ("doopa@gmail.com", null, null, null);
+        chef = new Chefs ("doopa@gmail.com", "kasjd", null, null);
+        Customers cust;
+        cust = new Customers ("jsk@gmail.com","sada",null, null, null);
         System.out.println(chef.getChefId());
-        //ddoawklfhsalkfas
+        
+        /* try {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("filename.txt"), "utf-8"));
+            writer.write();
+            writer.write(System.getProperty("line.separator"));
+            writer.write("jdsa");
+            
+            //writer.write(admin32.getACounter().toString());
+            writer.close();
+        } catch (Exception e){
+         System.out.println("messup");
+        } */
+        
+}
+        
+        
     }
     
-}
+
