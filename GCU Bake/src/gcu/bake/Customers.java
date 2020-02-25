@@ -28,7 +28,7 @@ public class Customers {
     //*******************
     
     //Contructors
-    public Customers(String pswd, String email, String phoneNo, String firstname, String lastname){
+    public Customers(String email, String pswd, String phoneNo, String firstname, String lastname){
         CustomerID += CCounter;
         CuPassword = pswd;
         CuEmail = email;
