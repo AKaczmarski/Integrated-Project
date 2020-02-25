@@ -33,6 +33,9 @@ public class Customers {
     //*******************
     
     //Getters
+    public int getCCounter(){
+        return this.CCounter;
+    }
     public int getCuID(){
         return this.CustomerID;
     }

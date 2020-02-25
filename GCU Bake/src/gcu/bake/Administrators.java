@@ -33,6 +33,9 @@ public class Administrators {
     //***********************
     
     //Getters
+    public int getACounter(){
+        return this.ACounter;
+    }
     public int getAdminID(){
         return this.AdminID;
     }

@@ -46,6 +46,9 @@ public class Chefs {
     //*******************
     
     //Getters
+    public int getChCounter (){
+        return this.getChCounter();
+    }
     public int getChefId(){
         return this.ChefID;
     }
