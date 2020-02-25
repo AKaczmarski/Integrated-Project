@@ -39,7 +39,9 @@ public class Administrators {
     //***********************
     
     //Setters
-    
+    public void setAPhoneNo(String ph){
+        this.APhoneNo = ph;
+    }
     //***********************
     
     //Methods
