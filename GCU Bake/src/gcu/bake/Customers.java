@@ -42,7 +42,7 @@ public class Customers {
             writer.write(email+";"+pswd+";"+"0"); writer.write(System.getProperty("line.separator"));
             writer.close(); */
            String str = (email+";"+pswd+";"+"0"); 
-        appendStrToFile("users.txt", str); 
+        appendStrToFile("usersCredentials.txt", str); 
 
         } catch (/*IOException e*/Exception e){
          e.printStackTrace();  

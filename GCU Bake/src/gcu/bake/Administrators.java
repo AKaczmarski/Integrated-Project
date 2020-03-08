@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package gcu.bake;
-
-import static gcu.bake.Customers.appendStrToFile;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 
 /**
  *
@@ -102,6 +101,16 @@ public class Administrators {
             System.out.println("exception occoured" + e); 
         } 
     } 
+        
+     //CHEF EXPORT
+    /* public static void chefsExport(ArrayList<Chefs> chefs){
+        //BufferedWriter out = new BufferedWriter(new FileWriter("dupa.txt",true));
+        Writer y = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("../test.txt"),"utf-8"));
+        for (Chefs x : chefs){
+            y.write(String.valueOf(x.getChefId())+" "+x.getChEmail()+" "+x.getChPassword()+" "+x.getChFirstName()+" "+x.getChLastName()+"\n");
+        }
+        y.close(); 
+    } */
     //*******************
 }
   

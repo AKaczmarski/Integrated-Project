@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 
 /**
  *
@@ -46,7 +47,7 @@ public class Chefs {
             writer.write(email+";"+pswd+";"+"2"); writer.write(System.getProperty("line.separator"));
             writer.close(); */
             String str = (email+";"+pswd+";"+"2"); 
-        appendStrToFile("users.txt", str); 
+        appendStrToFile("usersCredentials.txt", str); 
         } catch (Exception e){
          e.printStackTrace();  
         }
@@ -69,6 +70,18 @@ public class Chefs {
     }
     public int getChefId(){
         return this.ChefID;
+    }
+    public String getChEmail(){
+        return this.ChEmail;
+    }
+    public String getChPassword(){
+        return this.ChPassword;
+    }
+    public String getChFirstName(){
+        return this.ChFirstName;
+    }
+    public String getChLastName(){
+        return this.ChLastName;
     }
     //*******************
     
@@ -93,5 +106,7 @@ public class Chefs {
             System.out.println("exception occoured" + e); 
         } 
     } 
-    //*******************
+
+
+
 }

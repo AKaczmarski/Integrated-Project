@@ -37,6 +37,8 @@ public class Lessons {
     //*******************
     
     //Methods
-    
+    /*public changeStatus (int LessonID, int x){
+        
+    } */
     //*******************
 }
