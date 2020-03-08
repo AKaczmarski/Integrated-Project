@@ -28,12 +28,12 @@ public class GCUBake {
         
 
     Connection conn = null;
-    try {
+    /*try {
        
     conn.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
     } catch (SQLException e) {
         System.out.println(e);
-    }    
+    }    */
 
         
         
