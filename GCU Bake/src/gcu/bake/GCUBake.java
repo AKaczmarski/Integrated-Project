@@ -11,6 +11,11 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Properties;
 /**
  *
@@ -25,9 +30,27 @@ public class GCUBake {
         
         Administrators admin;
         admin = new Administrators ("smth@gmail.com", "password", "Adam", "Kaczmarski", null);
-        
+        //https://www.sis.pitt.edu/mbsclass/is2560/resources/UsingDerbyandDBMSinServlets.pdf
 
     Connection conn = null;
+    String url = "jdbc:derby://localhost:1527/GCUBake";
+    try {
+        conn = DriverManager.getConnection(url,"adam","adam");
+        System.out.println("yay");
+        String sql = "SELECT * FROM \"Chefs\"";
+        Statement st = conn.createStatement();
+        ResultSet rs = null;
+        rs=st.executeQuery(sql);
+        while(rs.next()){
+            System.out.println(rs.getString("FirstName"));
+        }
+        rs.close();
+        st.close();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println("fail");
+    }
+    
     /*try {
        
     conn.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
