@@ -39,7 +39,7 @@ public class GCUBake {
         }
         rs.close();
         
-        st.executeUpdate("INSERT INTO \"ADMINNISTRATORS\"(\"IDADMIN\",\"EMAIL\",\"PASSWORD\",\"FIRSTNAME\",\"LASTNAME\",\"PHONENUMBER\") VALUES (500000,\'smth@gmail.com\', \'password\', \'Adam\', \'Kaczmarski\', null)");
+        //st.executeUpdate("INSERT INTO \"ADMINNISTRATORS\"(\"IDADMIN\",\"EMAIL\",\"PASSWORD\",\"FIRSTNAME\",\"LASTNAME\",\"PHONENUMBER\") VALUES (500000,\'smth@gmail.com\', \'password\', \'Adam\', \'Kaczmarski\', null)");
         st.close();
         conn.close();
     } catch (SQLException e) {
