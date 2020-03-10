@@ -15,8 +15,8 @@ public class Lessons {
     private static int LCounter=0;
     private int LessonID=100000;
     private String LessonName;
-    private int[] Chefs; //Array contains all the chefs that can teach the lesson
-    //either it's an array with many IDs or many objets but with different chefID.
+    private int ChefID; 
+    private String LessonDescription;
     //*******************
     
     //Contructor
@@ -29,11 +29,33 @@ public class Lessons {
     //*******************
     
     //Getters
-    
+    public int getLCounter(){
+        return this.LCounter;
+    }
+    public int getLessonID(){
+        return this.LessonID;
+    }
+    public String getLessonName(){
+        return this.LessonName;
+    }
+    public int getChefID(){
+        return this.ChefID;
+    }
+    public String getLessonDescription(){
+        return this.LessonDescription;
+    }
     //*******************
     
     //Setters
-    
+    public void setLessonName(String name){
+        this.LessonName = name;
+    }
+    public void setChefID(int id){
+        this.ChefID =id;
+    }
+    public void setLessonDescription(String desc){
+        this.LessonDescription = desc;
+    }
     //*******************
     
     //Methods

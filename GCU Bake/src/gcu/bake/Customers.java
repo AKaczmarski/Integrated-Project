@@ -20,7 +20,7 @@ public class Customers {
     //Variables
     private static int CCounter=0;
     private static int CustomerID=000000;
-    private final String CuEmail; //unchangeable
+    private String CuEmail; //unchangeable
     private String CuPassword;
     private String CuPhoneNo;
     private String CuFirstName;
@@ -66,6 +66,12 @@ public class Customers {
     public String getCuPhoneNo(){
         return this.CuPhoneNo;
     }
+    public String getCuFirstName(){
+        return this.CuFirstName;
+    }
+    public String getCuLastName(){
+        return this.CuLastName;
+    }
     //*******************
     
     //Setters
@@ -74,6 +80,15 @@ public class Customers {
     }
     public void setCuPhoneNo(String ph){
         this.CuPhoneNo = ph;
+    }
+    public void setCuEmail(String email){
+        this.CuEmail = email;
+    }
+     public void setCuFirstName(String fname){
+        this.CuFirstName = fname;
+    }
+    public void setCuLastName(String lname){
+        this.CuLastName = lname;
     }
     //*******************
     

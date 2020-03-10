@@ -4,19 +4,12 @@
  * and open the template in the editor.
  */
 package gcu.bake;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Properties;
 /**
  *
  * @author akaczm200
@@ -45,18 +38,14 @@ public class GCUBake {
             System.out.println(rs.getString("FirstName"));
         }
         rs.close();
+        
+        st.executeUpdate("INSERT INTO \"ADMINNISTRATORS\"(\"IDADMIN\",\"EMAIL\",\"PASSWORD\",\"FIRSTNAME\",\"LASTNAME\",\"PHONENUMBER\") VALUES (500000,\'smth@gmail.com\', \'password\', \'Adam\', \'Kaczmarski\', null)");
         st.close();
         conn.close();
     } catch (SQLException e) {
-        System.out.println("fail");
-    }
-    
-    /*try {
-       
-    conn.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
-    } catch (SQLException e) {
         System.out.println(e);
-    }    */
+    }
+
 
         
         

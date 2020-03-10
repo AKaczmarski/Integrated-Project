@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class Administrators {
     //Variables
     private static int ACounter=0;
-    private int AdminID = 500000 ;
-    private final String AEmail;
+    private static int AdminID = 500000 ;
+    private String AEmail;
     private String APassword;
     private String AFirstName;
     private String ALastName;
@@ -67,6 +67,18 @@ public class Administrators {
     //Setters
     public void setAPhoneNo(String ph){
         this.APhoneNo = ph;
+    }
+    public void setAEmail(String email){
+        this.AEmail = email;
+    }
+     public void setAPassword(String pswd){
+        this.APassword = pswd;
+    }
+    public void setAFirstName(String fname){
+        this.AFirstName = fname;
+    }
+    public void setALastName(String lname){
+        this.ALastName = lname;
     }
     //***********************
     

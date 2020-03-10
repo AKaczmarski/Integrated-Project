@@ -22,8 +22,8 @@ public class Chefs {
    
     //Variables
     private static int ChCounter = 0;
-    private int ChefID = 200000;
-    private final String ChEmail;
+    private static int ChefID = 200000;
+    private String ChEmail;
     private String ChPassword;
     private String ChFirstName;
     private String ChLastName;
@@ -86,7 +86,21 @@ public class Chefs {
     //*******************
     
     //Setters
-    
+    public void setChPhoneNo(String ph){
+        this.ChPhoneNo = ph;
+    }
+    public void setChEmail(String email){
+        this.ChEmail = email;
+    }
+    public void setChPassword(String pswd){
+        this.ChPassword = pswd;
+    }
+    public void setChFirstName(String fname){
+        this.ChFirstName = fname;
+    }
+    public void setChLastName(String lname){
+        this.ChLastName = lname;
+    }
     //*******************
     
     //Methods
