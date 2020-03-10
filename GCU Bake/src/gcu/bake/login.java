@@ -300,10 +300,15 @@ private Boolean custVer(ResultSet rsC,String username, String password){
                      }
                 }
                 }
+                conn.close();
+                st.close();
+                st2.close();
+                st3.close();
             } catch(SQLException e){
                // JOptionPane.showMessageDialog(rootPane,"Username do not match OR You have not registered yet");
                System.out.println(e);
             }
+            
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
