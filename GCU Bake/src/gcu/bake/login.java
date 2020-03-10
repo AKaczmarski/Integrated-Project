@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project1;
+package gcu.bake;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 /**
  *
  * @author Dziugas
@@ -133,6 +139,11 @@ public class Login extends javax.swing.JFrame {
 
         passwordText.setBackground(new java.awt.Color(204, 204, 204));
         passwordText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        passwordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextActionPerformed(evt);
+            }
+        });
 
         usernameText.setBackground(new java.awt.Color(204, 204, 204));
         usernameText.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -215,38 +226,93 @@ public class Login extends javax.swing.JFrame {
         register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jLabelLoginMouseClicked
-
+private Boolean adminVer(ResultSet rsA,String username, String password){
+   try {
+       while(rsA.next()){
+           if (rsA.getString(1).equals(username) && rsA.getString(2).equals(password)) return true;
+       } return false;
+   } catch (SQLException e) {
+       System.out.println(e);
+   }
+   return false;
+}
+private Boolean chefVer(ResultSet rsCh,String username, String password){
+    try {
+       while(rsCh.next()){
+           if (rsCh.getString(1).equals(username) && rsCh.getString(2).equals(password)) return true;
+       } return false;
+   } catch (SQLException e) {
+       System.out.println(e);
+   }
+   return false;
+}
+private Boolean custVer(ResultSet rsC,String username, String password){
+    try {
+       while(rsC.next()){
+           if (rsC.getString(1).equals(username) && rsC.getString(2).equals(password)) return true;
+       } return false;
+   } catch (SQLException e) {
+       System.out.println(e);
+   }
+   return false;
+}
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         String username = usernameText.getText();
-        String password = passwordText.getText().toString();
-        BufferedReader br = null;
+        String password = new String (passwordText.getPassword());
+        Connection conn = null;
+        String url = "jdbc:derby://localhost:1527/GCUBake";
         
             try{
-                br = new BufferedReader(new FileReader(username));
-                String registeredUsername = br.readLine();
-                String registeredPassword = br.readLine();
-                br.close();
+                conn = DriverManager.getConnection(url,"adam","adam");
+                Statement st = conn.createStatement();
+                Statement st2 = conn.createStatement();
+                Statement st3 = conn.createStatement();
+                String sqlA = "SELECT \"EMAIL\",\"PASSWORD\" FROM \"ADMINS\"";
+                String sqlCh = "SELECT \"EMAIL\",\"PASSWORD\" FROM \"CHEFS\"";
+                String sqlC = "SELECT \"EMAIL\",\"PASSWORD\" FROM \"CUSTOMERS\"";
                 
-                if(registeredPassword.equals(password)) {
-                    
-                Main main = new Main(username);
-                main.setVisible(true);
-                main.pack();
-                main.setLocationRelativeTo(null);
-                main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
+                ResultSet rsA = st.executeQuery(sqlA);
+                ResultSet rsCh = st2.executeQuery(sqlCh);
+                ResultSet rsC = st3.executeQuery(sqlC);
+                if(adminVer(rsA,username,password)){
+                        Main_Admin main = new Main_Admin();
+                        main.setVisible(true);
+                        main.pack();
+                        main.setLocationRelativeTo(null);
+                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                } else {
+                    if (chefVer(rsCh,username,password)){
+                        Main_chef main = new Main_chef();
+                        main.setVisible(true);
+                        main.pack();
+                        main.setLocationRelativeTo(null);
+                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                    } else {
+                        if (custVer(rsC,username,password)){
+                        Main main = new Main();
+                        main.setVisible(true);
+                        main.pack();
+                        main.setLocationRelativeTo(null);
+                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                     }
                 }
-                else { 
-                JOptionPane.showMessageDialog(rootPane, "Password do not match"); }
-                
-            } catch(Exception e){
-                JOptionPane.showMessageDialog(rootPane,"Username do not match OR You have not registered yet");
+                }
+            } catch(SQLException e){
+               // JOptionPane.showMessageDialog(rootPane,"Username do not match OR You have not registered yet");
+               System.out.println(e);
             }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
     // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextActionPerformed
+
+    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextActionPerformed
 
     /**
      * @param args the command line arguments
