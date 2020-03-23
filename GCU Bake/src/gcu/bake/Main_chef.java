@@ -37,9 +37,9 @@ public class Main_chef extends javax.swing.JFrame {
         Title = new javax.swing.JLabel();
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        treatmentUpdate = new javax.swing.JTextField();
-        checkAppointmentStatus = new javax.swing.JButton();
         User = new javax.swing.JTextField();
+        upcAppsButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,54 +71,42 @@ public class Main_chef extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
-        treatmentUpdate.setBackground(new java.awt.Color(204, 204, 204));
-        treatmentUpdate.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        treatmentUpdate.setForeground(new java.awt.Color(0, 204, 0));
-        treatmentUpdate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        treatmentUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                treatmentUpdateActionPerformed(evt);
-            }
-        });
-
-        checkAppointmentStatus.setBackground(new java.awt.Color(102, 0, 102));
-        checkAppointmentStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        checkAppointmentStatus.setText("Check Lesson status");
-        checkAppointmentStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkAppointmentStatusActionPerformed(evt);
-            }
-        });
-
         User.setBackground(new java.awt.Color(44, 62, 80));
         User.setText("antrasis");
         User.setBorder(null);
+
+        upcAppsButton.setText("Upcoming Appointments");
+        upcAppsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                upcAppsButtonMouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(treatmentUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(720, 720, 720)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(checkAppointmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(747, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(upcAppsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(treatmentUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(checkAppointmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upcAppsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -180,38 +168,15 @@ public class Main_chef extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_MinimizeMouseClicked
 
-    private void treatmentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treatmentUpdateActionPerformed
-
-    }//GEN-LAST:event_treatmentUpdateActionPerformed
-
-    private void checkAppointmentStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAppointmentStatusActionPerformed
-        String vardas = User.getText().toString();
-        BufferedReader br = null;
-
-        try{
-            br = new BufferedReader(new FileReader(vardas));
-            String registeredUsername = br.readLine();
-            String registeredPassword = br.readLine();
-            String registeredFullName = br.readLine();
-            String registeredAge = br.readLine();
-            String registeredEmail = br.readLine();
-            String registeredRePassword = br.readLine();
-            String pause = br.readLine();
-            String next = br.readLine();
-
-            if (next.equals("777")){
-                treatmentUpdate.setText("pimpalas");
-            }
-            else{
-                treatmentUpdate.setText("putka");
-            }
-
-            br.close();
-
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane,"You dont have any treatments");
-        }
-    }//GEN-LAST:event_checkAppointmentStatusActionPerformed
+    private void upcAppsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upcAppsButtonMouseClicked
+        // TODO add your handling code here:
+                        upcApps upcApps = new upcApps();
+                        upcApps.setVisible(true);
+                        upcApps.pack();
+                        upcApps.setLocationRelativeTo(null);
+                        upcApps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+    }//GEN-LAST:event_upcAppsButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -253,9 +218,9 @@ public class Main_chef extends javax.swing.JFrame {
     private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
     private javax.swing.JTextField User;
-    private javax.swing.JButton checkAppointmentStatus;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField treatmentUpdate;
+    private javax.swing.JButton upcAppsButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -297,7 +297,9 @@ private Boolean custVer(ResultSet rsC,String username, String password){
                         main.setLocationRelativeTo(null);
                         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
-                     }
+                     } else {
+                            JOptionPane.showMessageDialog(rootPane,"Username do not match OR You have not registered yet");
+                        }
                 }
                 }
                 conn.close();
