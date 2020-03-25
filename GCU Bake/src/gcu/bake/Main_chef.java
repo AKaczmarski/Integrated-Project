@@ -5,11 +5,8 @@
  */
 package gcu.bake;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Scanner;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dziugas
@@ -18,9 +15,17 @@ public class Main_chef extends javax.swing.JFrame {
 
     /**
      * Creates new form Main_chef
+     * @param chefID
      */
-    public Main_chef() {
+    public Main_chef(Integer chefID) {
         initComponents();
+        //Did this
+        String schID;
+        schID = chefID.toString();
+        chIdStorage.setText(schID);
+        chIdStorage.setVisible(false); //there's a unvisible label that has the String value of chef's ID, which I'll use in queries and stuff
+        //to pass the ID from login to main_chef
+        //https://www.youtube.com/watch?v=ARsLU5Tatw0 from this tutorial
     }
 
     /**
@@ -37,9 +42,9 @@ public class Main_chef extends javax.swing.JFrame {
         Title = new javax.swing.JLabel();
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        User = new javax.swing.JTextField();
         upcAppsButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        chIdStorage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,10 +76,6 @@ public class Main_chef extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
-        User.setBackground(new java.awt.Color(44, 62, 80));
-        User.setText("antrasis");
-        User.setBorder(null);
-
         upcAppsButton.setText("Upcoming Appointments");
         upcAppsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,15 +89,15 @@ public class Main_chef extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(747, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addComponent(upcAppsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chIdStorage)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -106,9 +107,9 @@ public class Main_chef extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(upcAppsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addComponent(chIdStorage)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -181,13 +182,13 @@ public class Main_chef extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+  /*  public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /* try {                                                                                                           THIS ONE HAD A PROBLEM SO I COMMENTED IT IDK WHAT DOES IT DO BUT SEEMS TO BE WORKING
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -202,22 +203,26 @@ public class Main_chef extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main_chef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main_chef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } */
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main_chef().setVisible(true);
+               // new Main_chef(chefID).setVisible(true); Commented it because it wouldn't compile with it, we'll test later
             }
         });
     }
+        THIS MAIN HERE CAN BE DELETED, I LEFT IT FOR YOU TO HAVE A LOOK
+        IT JUST RUNS BLANK DASHBOARD AND WE DON'T WANT IT TO HAPPEN CAUSE WE LAUNCH THE DASHBOARD FROM LOGIN
+        ALREADY DELETED IT IN ADMIN
+    */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
-    private javax.swing.JTextField User;
+    private javax.swing.JLabel chIdStorage;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

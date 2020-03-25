@@ -5,11 +5,8 @@
  */
 package gcu.bake;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Scanner;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dziugas
@@ -18,9 +15,13 @@ public class Main_Admin extends javax.swing.JFrame {
 
     /**
      * Creates new form Main_Admin
+     * @param AdminID
      */
-    public Main_Admin() {
+    public Main_Admin(Integer AdminID) {
         initComponents();
+        String adminId = AdminID.toString();
+        adminIdStorage.setText(adminId);
+        adminIdStorage.setVisible(false);    
     }
 
     /**
@@ -38,10 +39,10 @@ public class Main_Admin extends javax.swing.JFrame {
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         addUser = new javax.swing.JButton();
-        User = new javax.swing.JTextField();
         comboBox = new javax.swing.JComboBox<>();
         addUser1 = new javax.swing.JButton();
         addUser2 = new javax.swing.JButton();
+        adminIdStorage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +83,6 @@ public class Main_Admin extends javax.swing.JFrame {
             }
         });
 
-        User.setBackground(new java.awt.Color(44, 62, 80));
-        User.setText("antrasis");
-        User.setBorder(null);
-
         comboBox.setBackground(new java.awt.Color(102, 0, 102));
         comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose a User...", "Admin", "Chef", "Lesson" }));
@@ -113,14 +110,12 @@ public class Main_Admin extends javax.swing.JFrame {
             }
         });
 
+        adminIdStorage.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(addUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,6 +129,10 @@ public class Main_Admin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(adminIdStorage)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,9 +144,9 @@ public class Main_Admin extends javax.swing.JFrame {
                     .addComponent(addUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(103, 103, 103)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addComponent(adminIdStorage)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -226,46 +225,16 @@ public class Main_Admin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main_Admin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
-    private javax.swing.JTextField User;
     private javax.swing.JButton addUser;
     private javax.swing.JButton addUser1;
     private javax.swing.JButton addUser2;
+    private javax.swing.JLabel adminIdStorage;
     private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

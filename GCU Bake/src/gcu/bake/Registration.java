@@ -272,7 +272,7 @@ public class Registration extends javax.swing.JFrame {
     }                                        
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        Connection conn = null;
+        Connection conn;
         String url = "jdbc:derby://localhost:1527/GCUBake";
         
         try{

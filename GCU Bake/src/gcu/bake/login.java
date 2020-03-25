@@ -5,8 +5,6 @@
  */
 package gcu.bake;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
@@ -26,7 +24,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        this.setLocationRelativeTo(null);
+       // this.setLocationRelativeTo(null);
     }
 
     /**
@@ -226,7 +224,8 @@ public class Login extends javax.swing.JFrame {
         register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jLabelLoginMouseClicked
-private Boolean adminVer(ResultSet rsA,String username, String password){
+// ******************************** GROUP'S FUNCTIONS **************************
+    private Boolean adminVer(ResultSet rsA,String username, String password){
    try {
        while(rsA.next()){
            if (rsA.getString(1).equals(username) && rsA.getString(2).equals(password)) return true;
@@ -256,10 +255,96 @@ private Boolean custVer(ResultSet rsC,String username, String password){
    }
    return false;
 }
+/*
+* This function gets chef's ID to pass it to his dashboard, so the queries may be executed
+*/
+private Integer getChID (String usr, String pswd){
+    Connection conn;
+    String url = "jdbc:derby://localhost:1527/GCUBake";
+    String getIDQuery = "SELECT \"IDCHEF\" FROM \"CHEFS\" WHERE \"EMAIL\" = ? AND \"PASSWORD\" = ?";
+    try {
+        conn = DriverManager.getConnection(url,"adam","adam");
+        
+        PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
+        stmnt.setString(1,usr);
+        stmnt.setString(2,pswd);
+        ResultSet rs = stmnt.executeQuery();
+        if (rs.next()){
+            Integer temp = rs.getInt(1);   
+            //System.out.println(temp);
+            stmnt.close();
+            conn.close();
+            rs.close();
+            return temp;
+        } return 0;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+    return 0;
+}
+/*
+* This function gets admin's ID to pass it to his dashboard, so the queries may be executed
+*/
+private Integer getAdID (String usr, String pswd){
+    Connection conn;
+    String url = "jdbc:derby://localhost:1527/GCUBake";
+    String getIDQuery = "SELECT \"IDADMIN\" FROM \"ADMINS\" WHERE \"EMAIL\" = ? AND \"PASSWORD\" = ?"; //Unfortunately we can't do ? in the place of table name so we have to copy paste that
+    // or maybe we can but idk how :D
+    try {
+        conn = DriverManager.getConnection(url,"adam","adam");
+        
+        PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
+        stmnt.setString(1,usr);
+        stmnt.setString(2,pswd);
+        ResultSet rs = stmnt.executeQuery();
+        if (rs.next()){
+            Integer temp = rs.getInt(1);   
+            //System.out.println(temp);
+            stmnt.close();
+            conn.close();
+            rs.close();
+            return temp;
+        } return 0;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+    return 0;
+}
+/*
+* This function gets customer's ID to pass it to his dashboard, so the queries may be executed
+*/
+private Integer getCuID (String usr, String pswd){
+    Connection conn;
+    String url = "jdbc:derby://localhost:1527/GCUBake";
+    String getIDQuery = "SELECT \"IDCUSTOMER\" FROM \"CUSTOMERS\" WHERE \"EMAIL\" = ? AND \"PASSWORD\" = ?"; //Unfortunately we can't do ? in the place of table name so we have to copy paste that
+    // or maybe we can but idk how :D
+    try {
+        conn = DriverManager.getConnection(url,"adam","adam");
+        
+        PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
+        stmnt.setString(1,usr);
+        stmnt.setString(2,pswd);
+        ResultSet rs = stmnt.executeQuery();
+        if (rs.next()){
+            Integer temp = rs.getInt(1);   
+            //System.out.println(temp);
+            stmnt.close();
+            conn.close();
+            rs.close();
+            return temp;
+        } return 0;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+    return 0;
+}
+
+// ******************************** END OF GROUP'S FUNCTIONS **************************
+
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         String username = usernameText.getText();
         String password = new String (passwordText.getPassword());
-        Connection conn = null;
+        Connection conn;
         String url = "jdbc:derby://localhost:1527/GCUBake";
         
             try{
@@ -275,21 +360,31 @@ private Boolean custVer(ResultSet rsC,String username, String password){
                 ResultSet rsCh = st2.executeQuery(sqlCh);
                 ResultSet rsC = st3.executeQuery(sqlC);
                 if(adminVer(rsA,username,password)){
-                        Main_Admin main = new Main_Admin();
-                        main.setVisible(true);
-                        main.pack();
-                        main.setLocationRelativeTo(null);
-                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        Integer AdminID = getAdID(username,password);
+                        System.out.println(AdminID);
+                        if (AdminID !=0 ){
+                        Main_Admin mainAd = new Main_Admin(AdminID);
+                        mainAd.setVisible(true);
+                        mainAd.pack();
+                        mainAd.setLocationRelativeTo(null);
+                        mainAd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
+                        }
                 } else {
                     if (chefVer(rsCh,username,password)){
-                        Main_chef main = new Main_chef();
-                        main.setVisible(true);
-                        main.pack();
-                        main.setLocationRelativeTo(null);
-                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        Integer ChefID = getChID(username,password); //This and the function above 
+                        //I use Integer because the ID in database is in int type. Integer will allow us to convert it into String and use it in future queries.
+                        System.out.println(ChefID);
+                        if (ChefID != 0) {
+                        Main_chef mainCh = new Main_chef(ChefID);
+                        mainCh.setVisible(true);
+                        mainCh.pack();
+                        mainCh.setLocationRelativeTo(null);
+                        mainCh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
+                        }
                     } else {
+                        //THAT'S YOURS TO FIGURE OUT, BASICALLY COPY PASTE FROM ABOVE BUT ANALYZE IT FOR YOURSELF
                         if (custVer(rsC,username,password)){
                         Main main = new Main();
                         main.setVisible(true);
@@ -349,10 +444,8 @@ private Boolean custVer(ResultSet rsC,String username, String password){
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
 
