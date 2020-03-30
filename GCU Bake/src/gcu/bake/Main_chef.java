@@ -22,8 +22,8 @@ public class Main_chef extends javax.swing.JFrame {
         initComponents();
         //Did this
         schID = chefID;
-        chIdStorage.setText(schID);
-        chIdStorage.setVisible(false); //there's a unvisible label that has the String value of chef's ID, which I'll use in queries and stuff
+       // chIdStorage.setText(schID);
+        //chIdStorage.setVisible(false); //there's a unvisible label that has the String value of chef's ID, which I'll use in queries and stuff
         //to pass the ID from login to main_chef
         //https://www.youtube.com/watch?v=ARsLU5Tatw0 from this tutorial
     }
@@ -181,7 +181,7 @@ public class Main_chef extends javax.swing.JFrame {
 
     private void upcAppsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upcAppsButtonMouseClicked
         // TODO add your handling code here:
-                        upcApps upcApps = new upcApps(schID);
+                        ch_upcApps upcApps = new ch_upcApps(schID);
                         upcApps.setVisible(true);
                         upcApps.pack();
                         upcApps.setLocationRelativeTo(null);
@@ -190,7 +190,7 @@ public class Main_chef extends javax.swing.JFrame {
     }//GEN-LAST:event_upcAppsButtonMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        appsHistory appsHistory = new appsHistory(schID);
+        ch_appsHistory appsHistory = new ch_appsHistory(schID);
         appsHistory.setVisible(true);
         appsHistory.pack();
         appsHistory.setLocationRelativeTo(null);

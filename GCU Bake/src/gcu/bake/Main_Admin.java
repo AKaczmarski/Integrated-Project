@@ -17,11 +17,10 @@ public class Main_Admin extends javax.swing.JFrame {
      * Creates new form Main_Admin
      * @param AdminID
      */
-    public Main_Admin(Integer AdminID) {
+    private final String saID;
+    public Main_Admin(String AdminID) {
         initComponents();
-        String adminId = AdminID.toString();
-        adminIdStorage.setText(adminId);
-        adminIdStorage.setVisible(false);    
+        saID = AdminID;         
     }
 
     /**
@@ -39,10 +38,11 @@ public class Main_Admin extends javax.swing.JFrame {
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         addUser = new javax.swing.JButton();
-        comboBox = new javax.swing.JComboBox<>();
         addUser1 = new javax.swing.JButton();
         addUser2 = new javax.swing.JButton();
         adminIdStorage = new javax.swing.JLabel();
+        lessonsButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,15 +83,6 @@ public class Main_Admin extends javax.swing.JFrame {
             }
         });
 
-        comboBox.setBackground(new java.awt.Color(102, 0, 102));
-        comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose a User...", "Admin", "Chef", "Lesson" }));
-        comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxActionPerformed(evt);
-            }
-        });
-
         addUser1.setBackground(new java.awt.Color(102, 0, 102));
         addUser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addUser1.setText("Add a User");
@@ -112,23 +103,43 @@ public class Main_Admin extends javax.swing.JFrame {
 
         adminIdStorage.setText("jLabel1");
 
+        lessonsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lessonsButton.setText("Appointments");
+        lessonsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lessonsButtonMouseClicked(evt);
+            }
+        });
+        lessonsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lessonsButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("Lessons");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(addUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addUser1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                    .addComponent(lessonsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(addUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addUser2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(adminIdStorage)
@@ -138,13 +149,15 @@ public class Main_Admin extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lessonsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addGap(119, 119, 119)
                 .addComponent(adminIdStorage)
                 .addContainerGap())
         );
@@ -206,21 +219,39 @@ public class Main_Admin extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_MinimizeMouseClicked
 
+    private void lessonsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessonsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lessonsButtonActionPerformed
+
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
-        
+
     }//GEN-LAST:event_addUserActionPerformed
 
-    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
-
-    }//GEN-LAST:event_comboBoxActionPerformed
+    private void addUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUser2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUser2ActionPerformed
 
     private void addUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUser1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addUser1ActionPerformed
 
-    private void addUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUser2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addUser2ActionPerformed
+    private void lessonsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lessonsButtonMouseClicked
+       admin_appointments_dashboard x = new admin_appointments_dashboard(saID);
+       x.setVisible(true);
+       x.pack();
+       x.setLocationRelativeTo(null);
+       x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       this.dispose();
+    }//GEN-LAST:event_lessonsButtonMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Lessons x = new Lessons(saID);
+        x.setVisible(true);
+        x.pack();
+        x.setLocationRelativeTo(null);
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -235,8 +266,9 @@ public class Main_Admin extends javax.swing.JFrame {
     private javax.swing.JButton addUser1;
     private javax.swing.JButton addUser2;
     private javax.swing.JLabel adminIdStorage;
-    private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton lessonsButton;
     // End of variables declaration//GEN-END:variables
 }

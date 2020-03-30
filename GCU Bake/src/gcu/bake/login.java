@@ -24,7 +24,10 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-       // this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
+       // algorithm that runs and sets status to ON-going if the lesson is on the same day as algorithm runs
+       // algorithm that set status to Star-baker if all lessons of the same type have been completed
+       
     }
 
     /**
@@ -363,7 +366,7 @@ private Integer getCuID (String usr, String pswd){
                         Integer AdminID = getAdID(username,password);
                         System.out.println(AdminID);
                         if (AdminID !=0 ){
-                        Main_Admin mainAd = new Main_Admin(AdminID);
+                        Main_Admin mainAd = new Main_Admin(AdminID.toString());
                         mainAd.setVisible(true);
                         mainAd.pack();
                         mainAd.setLocationRelativeTo(null);
