@@ -4,8 +4,17 @@
  * and open the template in the editor.
  */
 package gcu.bake;
+    
+import java.awt.BorderLayout;
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 
-import javax.swing.JFrame;
 
 /**
  *
@@ -16,8 +25,71 @@ public class upcApps extends javax.swing.JFrame {
     /**
      * Creates new form upcApps
      */
-    public upcApps() {
+    private final String schID;
+    public upcApps(String chID) {
         initComponents();
+        schID = chID;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        System.out.println(schID);
+        try {
+            //https://www.youtube.com/watch?v=G4JeKZ6nDUI
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+            /*  SELECT L.LESSONNAME AS "Lesson Name",(Cu.FIRSTNAME || ' ' || Cu.LASTNAME) AS Name, A.DATE AS Date, A.STATUS as Status
+                FROM APPOINTMENTS A
+                INNER JOIN CUSTOMERS Cu ON A.CUSTOMERID = Cu.IDCUSTOMER
+                INNER JOIN LESSONS L ON A.LESSONID = L.IDLESSON
+                WHERE L.CHEFID = 200008; 
+            */
+            String getApps = "SELECT L.LESSONNAME AS \"Lesson Name\",(Cu.FIRSTNAME || ' ' || Cu.LASTNAME) AS \"Name\", A.DATE AS \"Date\", A.STATUS as \"Status\" FROM APPOINTMENTS A INNER JOIN CUSTOMERS Cu ON A.CUSTOMERID = Cu.IDCUSTOMER INNER JOIN LESSONS L ON A.LESSONID = L.IDLESSON WHERE L.CHEFID = ? AND DATE>=CURRENT_DATE";
+            pst = conn.prepareStatement(getApps);
+            pst.setString(1, schID);
+                System.out.println(45);
+            rs = pst.executeQuery();
+            ResultSetMetaData rsmt = rs.getMetaData();
+                System.out.println(45);
+            int c = rsmt.getColumnCount();
+                System.out.println(45);
+            Vector column = new Vector(c);
+            for (int i=1;i<=c;i++){
+                column.add(rsmt.getColumnName(i));
+            }
+            Vector data = new Vector();
+            Vector row = new Vector();
+            while (rs.next()){
+                row = new Vector(c);
+                for (int i =1;i<=c;i++){
+                    row.add(rs.getString(i));
+                }
+                data.add(row);
+            }
+            //JFrame frame = new JFrame();
+            //frame.setSize(600,120);
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //JPanel panel = new JPanel();
+            JTable table = new JTable (data,column);
+            JScrollPane jsp = new JScrollPane(table);
+            jPanel3.setLayout(new BorderLayout());
+            jPanel3.add(jsp,BorderLayout.CENTER);
+            //frame.setContentPane(panel);
+            //frame.setVisible(true);
+                    
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        } /* finally {
+            try {
+            conn.close();
+            pst.close();
+            rs.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"ERROR");
+            }
+        } */
+        
     }
 
     /**
@@ -29,12 +101,29 @@ public class upcApps extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         Close = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        User = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
+        chIdStorage = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,25 +155,52 @@ public class upcApps extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
-        User.setBackground(new java.awt.Color(44, 62, 80));
-        User.setText("antrasis");
-        User.setBorder(null);
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        chIdStorage.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 314, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(747, Short.MAX_VALUE))
+                .addComponent(chIdStorage)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 667, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addGap(0, 40, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chIdStorage))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -144,47 +260,27 @@ public class upcApps extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_MinimizeMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(upcApps.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(upcApps.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(upcApps.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(upcApps.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        Main_chef mainCh = new Main_chef(schID);
+        mainCh.setVisible(true);
+        mainCh.pack();
+        mainCh.setLocationRelativeTo(null);
+        mainCh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new upcApps().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
-    private javax.swing.JTextField User;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel chIdStorage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

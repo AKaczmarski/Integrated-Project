@@ -17,11 +17,11 @@ public class Main_chef extends javax.swing.JFrame {
      * Creates new form Main_chef
      * @param chefID
      */
-    public Main_chef(Integer chefID) {
+    private final String schID;
+    public Main_chef(String chefID) {
         initComponents();
         //Did this
-        String schID;
-        schID = chefID.toString();
+        schID = chefID;
         chIdStorage.setText(schID);
         chIdStorage.setVisible(false); //there's a unvisible label that has the String value of chef's ID, which I'll use in queries and stuff
         //to pass the ID from login to main_chef
@@ -83,7 +83,17 @@ public class Main_chef extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Appointment History");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -171,13 +181,26 @@ public class Main_chef extends javax.swing.JFrame {
 
     private void upcAppsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upcAppsButtonMouseClicked
         // TODO add your handling code here:
-                        upcApps upcApps = new upcApps();
+                        upcApps upcApps = new upcApps(schID);
                         upcApps.setVisible(true);
                         upcApps.pack();
                         upcApps.setLocationRelativeTo(null);
                         upcApps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
     }//GEN-LAST:event_upcAppsButtonMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        appsHistory appsHistory = new appsHistory(schID);
+        appsHistory.setVisible(true);
+        appsHistory.pack();
+        appsHistory.setLocationRelativeTo(null);
+        appsHistory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,21 +4,90 @@
  * and open the template in the editor.
  */
 package gcu.bake;
+    
+import java.awt.BorderLayout;
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 
-
-import javax.swing.JFrame;
 
 /**
  *
- * @author Group A1
+ * @author GroupA1
  */
 public class appsHistory extends javax.swing.JFrame {
 
     /**
-     * Creates new form appsHistory
+     * Creates new form upcApps
      */
-    public appsHistory() {
+    private final String schID;
+    public appsHistory(String chID) {
         initComponents();
+        schID = chID;
+        dataFill();
+       /* Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        System.out.println(schID);
+        try {
+            //https://www.youtube.com/watch?v=G4JeKZ6nDUI
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+            /*  SELECT L.LESSONNAME AS "Lesson Name",(Cu.FIRSTNAME || ' ' || Cu.LASTNAME) AS Name, A.DATE AS Date, A.STATUS as Status
+                FROM APPOINTMENTS A
+                INNER JOIN CUSTOMERS Cu ON A.CUSTOMERID = Cu.IDCUSTOMER
+                INNER JOIN LESSONS L ON A.LESSONID = L.IDLESSON
+                WHERE L.CHEFID = 200008; 
+            
+            String getApps = "SELECT A.IDAPPOINTMENT AS \"Appointment ID\", L.LESSONNAME AS \"Lesson Name\",(Cu.FIRSTNAME || ' ' || Cu.LASTNAME) AS \"Name\", A.DATE AS \"Date\", A.STATUS as \"Status\" FROM APPOINTMENTS A INNER JOIN CUSTOMERS Cu ON A.CUSTOMERID = Cu.IDCUSTOMER INNER JOIN LESSONS L ON A.LESSONID = L.IDLESSON WHERE L.CHEFID = ? AND DATE<CURRENT_DATE";
+            pst = conn.prepareStatement(getApps);
+            pst.setString(1, schID);
+            rs = pst.executeQuery();
+            ResultSetMetaData rsmt = rs.getMetaData();
+            int c = rsmt.getColumnCount();
+            Vector column = new Vector(c);
+            for (int i=1;i<=c;i++){
+                column.add(rsmt.getColumnName(i));
+            }
+            Vector data = new Vector();
+            Vector row = new Vector();
+            while (rs.next()){
+                row = new Vector(c);
+                for (int i =1;i<=c;i++){
+                    row.add(rs.getString(i));
+                }
+                data.add(row);
+            }
+            //JFrame frame = new JFrame();
+            //frame.setSize(600,120);
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //JPanel panel = new JPanel();
+            JTable table = new JTable (data,column);
+            JScrollPane jsp = new JScrollPane(table);
+            jPanel4.setLayout(new BorderLayout());
+            jPanel4.add(jsp,BorderLayout.CENTER);
+            //frame.setContentPane(panel);
+            //frame.setVisible(true);
+                    
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }  finally {
+            try {
+            conn.close();
+            pst.close();
+            rs.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"ERROR");
+            }
+        } */
+        
     }
 
     /**
@@ -35,7 +104,9 @@ public class appsHistory extends javax.swing.JFrame {
         Title = new javax.swing.JLabel();
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        User = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        chStatus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,25 +138,69 @@ public class appsHistory extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
-        User.setBackground(new java.awt.Color(44, 62, 80));
-        User.setText("antrasis");
-        User.setBorder(null);
+        backButton.setText("Back");
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backButtonMouseClicked(evt);
+            }
+        });
+
+        jPanel4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel4FocusGained(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 859, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 299, Short.MAX_VALUE)
+        );
+
+        chStatus.setText("Change status to Not-complete");
+        chStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chStatusMouseClicked(evt);
+            }
+        });
+        chStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(747, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(chStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(chStatus))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -141,51 +256,125 @@ public class appsHistory extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_CloseMouseClicked
 
+    private void dataFill (){
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        System.out.println(schID);
+        try {
+            //https://www.youtube.com/watch?v=G4JeKZ6nDUI
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+            /*  SELECT L.LESSONNAME AS "Lesson Name",(Cu.FIRSTNAME || ' ' || Cu.LASTNAME) AS Name, A.DATE AS Date, A.STATUS as Status
+                FROM APPOINTMENTS A
+                INNER JOIN CUSTOMERS Cu ON A.CUSTOMERID = Cu.IDCUSTOMER
+                INNER JOIN LESSONS L ON A.LESSONID = L.IDLESSON
+                WHERE L.CHEFID = 200008; 
+            */
+            String getApps = "SELECT A.IDAPPOINTMENT AS \"Appointment ID\", L.LESSONNAME AS \"Lesson Name\",(Cu.FIRSTNAME || ' ' || Cu.LASTNAME) AS \"Name\", A.DATE AS \"Date\", A.STATUS as \"Status\" FROM APPOINTMENTS A INNER JOIN CUSTOMERS Cu ON A.CUSTOMERID = Cu.IDCUSTOMER INNER JOIN LESSONS L ON A.LESSONID = L.IDLESSON WHERE L.CHEFID = ? AND DATE<CURRENT_DATE";
+            pst = conn.prepareStatement(getApps);
+            pst.setString(1, schID);
+            rs = pst.executeQuery();
+            ResultSetMetaData rsmt = rs.getMetaData();
+            int c = rsmt.getColumnCount();
+            Vector column = new Vector(c);
+            for (int i=1;i<=c;i++){
+                column.add(rsmt.getColumnName(i));
+            }
+            Vector data = new Vector();
+            Vector row = new Vector();
+            while (rs.next()){
+                row = new Vector(c);
+                for (int i =1;i<=c;i++){
+                    row.add(rs.getString(i));
+                }
+                data.add(row);
+            }
+            //JFrame frame = new JFrame();
+            //frame.setSize(600,120);
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //JPanel panel = new JPanel();
+            JTable table = new JTable (data,column);
+            JScrollPane jsp = new JScrollPane(table);
+            jPanel4.setLayout(new BorderLayout());
+            jPanel4.add(jsp,BorderLayout.CENTER);
+            //frame.setContentPane(panel);
+            //frame.setVisible(true);
+            } catch (SQLException e) {
+            System.out.println(e);
+        } /* finally {
+            try {
+            conn.close();
+            pst.close();
+            rs.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"ERROR");
+            }
+        } */
+    }
     private void MinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeMouseClicked
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_MinimizeMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(appsHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(appsHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(appsHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(appsHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
+        Main_chef mainCh = new Main_chef(schID);
+        mainCh.setVisible(true);
+        mainCh.pack();
+        mainCh.setLocationRelativeTo(null);
+        mainCh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_backButtonMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new appsHistory().setVisible(true);
+    private void chStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chStatusActionPerformed
+
+    private void chStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chStatusMouseClicked
+        JFrame frame = new JFrame();
+        String tempString = JOptionPane.showInputDialog (frame,"Enter Appointment ID");
+        int id = Integer.parseInt(tempString);
+        System.out.println(id);
+        Connection conn=null;
+        PreparedStatement pst = null;
+        try {
+            System.out.println("here1");
+            String updateStatus = "UPDATE APPOINTMENTS A SET A.STATUS = 'Not-complete' WHERE IDAPPOINTMENT = ?";
+            conn= DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+            pst=conn.prepareStatement(updateStatus);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            appsHistory appsHistory = new appsHistory(schID);
+            appsHistory.setVisible(true);
+            appsHistory.pack();
+            appsHistory.setLocationRelativeTo(null);
+            appsHistory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                if (conn != null) conn.close();
+                if (pst != null) pst.close();
+            } catch (SQLException e) {
+                System.out.println(e);
             }
-        });
-    }
+        }
+        
+    }//GEN-LAST:event_chStatusMouseClicked
+
+    private void jPanel4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel4FocusGained
+       
+    }//GEN-LAST:event_jPanel4FocusGained
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
-    private javax.swing.JTextField User;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton chStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

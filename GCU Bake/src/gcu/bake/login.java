@@ -376,7 +376,8 @@ private Integer getCuID (String usr, String pswd){
                         //I use Integer because the ID in database is in int type. Integer will allow us to convert it into String and use it in future queries.
                         System.out.println(ChefID);
                         if (ChefID != 0) {
-                        Main_chef mainCh = new Main_chef(ChefID);
+                        String schID = ChefID.toString();
+                        Main_chef mainCh = new Main_chef(schID);
                         mainCh.setVisible(true);
                         mainCh.pack();
                         mainCh.setLocationRelativeTo(null);
