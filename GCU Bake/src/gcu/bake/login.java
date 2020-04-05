@@ -24,7 +24,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        //this.setLocationRelativeTo(null);
+        setToOnGoing();
+        setToStarBaker();
+        this.setLocationRelativeTo(null);
        // algorithm that runs and sets status to ON-going if the lesson is on the same day as algorithm runs
        // algorithm that set status to Star-baker if all lessons of the same type have been completed
        
@@ -48,8 +50,8 @@ public class Login extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
         jLabelLogin = new javax.swing.JLabel();
-        passwordText = new javax.swing.JPasswordField();
-        usernameText = new javax.swing.JTextField();
+        PASSWORD = new javax.swing.JPasswordField();
+        EMAIL = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -91,18 +93,21 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabelMin)
                 .addGap(26, 26, 26)
                 .addComponent(jLabelClose)
-                .addGap(19, 19, 19))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabelClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelMin, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelMin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
@@ -110,7 +115,7 @@ public class Login extends javax.swing.JFrame {
         usernameLabel.setBackground(new java.awt.Color(204, 204, 204));
         usernameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        usernameLabel.setText("Username:");
+        usernameLabel.setText("Email:");
 
         passwordLabel.setBackground(new java.awt.Color(204, 204, 204));
         passwordLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -138,19 +143,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        passwordText.setBackground(new java.awt.Color(204, 204, 204));
-        passwordText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        passwordText.addActionListener(new java.awt.event.ActionListener() {
+        PASSWORD.setBackground(new java.awt.Color(204, 204, 204));
+        PASSWORD.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        PASSWORD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextActionPerformed(evt);
+                PASSWORDActionPerformed(evt);
             }
         });
 
-        usernameText.setBackground(new java.awt.Color(204, 204, 204));
-        usernameText.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        usernameText.addActionListener(new java.awt.event.ActionListener() {
+        EMAIL.setBackground(new java.awt.Color(204, 204, 204));
+        EMAIL.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        EMAIL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameTextActionPerformed(evt);
+                EMAILActionPerformed(evt);
             }
         });
 
@@ -166,26 +171,26 @@ public class Login extends javax.swing.JFrame {
                 .addGap(48, 48, 48))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usernameLabel)
-                    .addComponent(passwordLabel))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordLabel)
+                    .addComponent(usernameLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(passwordText, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(usernameText))
+                    .addComponent(PASSWORD, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(EMAIL))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(usernameText))
+                .addGap(80, 80, 80)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PASSWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,30 +233,50 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabelLoginMouseClicked
 // ******************************** GROUP'S FUNCTIONS **************************
-    private Boolean adminVer(ResultSet rsA,String username, String password){
+    private void setToOnGoing(){
+    try {
+        Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+        String q ="UPDATE APPOINTMENTS SET STATUS =\'On-going\' WHERE DATE = CURRENT_DATE";
+        Statement st = conn.createStatement();
+        st.executeUpdate(q);
+    } catch (SQLException e){
+        System.out.println(e);  
+    }
+}
+    private void setToStarBaker(){
+    try {
+        Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+        String q ="UPDATE APPOINTMENTS SET STATUS =\'Star Baker\' WHERE DATE < CURRENT_DATE AND STATUS NOT LIKE 'Not-complete'";
+        Statement st = conn.createStatement();
+        st.executeUpdate(q);
+    } catch (SQLException e){
+        System.out.println(e);  
+    }   
+    }
+    private Boolean adminVer(ResultSet rsA,String email, String password){
    try {
        while(rsA.next()){
-           if (rsA.getString(1).equals(username) && rsA.getString(2).equals(password)) return true;
+           if (rsA.getString(1).equals(email) && rsA.getString(2).equals(password)) return true;
        } return false;
    } catch (SQLException e) {
        System.out.println(e);
    }
    return false;
 }
-private Boolean chefVer(ResultSet rsCh,String username, String password){
+private Boolean chefVer(ResultSet rsCh,String email, String password){
     try {
        while(rsCh.next()){
-           if (rsCh.getString(1).equals(username) && rsCh.getString(2).equals(password)) return true;
+           if (rsCh.getString(1).equals(email) && rsCh.getString(2).equals(password)) return true;
        } return false;
    } catch (SQLException e) {
        System.out.println(e);
    }
    return false;
 }
-private Boolean custVer(ResultSet rsC,String username, String password){
+private Boolean custVer(ResultSet rsC,String email, String password){
     try {
        while(rsC.next()){
-           if (rsC.getString(1).equals(username) && rsC.getString(2).equals(password)) return true;
+           if (rsC.getString(1).equals(email) && rsC.getString(2).equals(password)) return true;
        } return false;
    } catch (SQLException e) {
        System.out.println(e);
@@ -261,7 +286,7 @@ private Boolean custVer(ResultSet rsC,String username, String password){
 /*
 * This function gets chef's ID to pass it to his dashboard, so the queries may be executed
 */
-private Integer getChID (String usr, String pswd){
+private Integer getChID (String email, String password){
     Connection conn;
     String url = "jdbc:derby://localhost:1527/GCUBake";
     String getIDQuery = "SELECT \"IDCHEF\" FROM \"CHEFS\" WHERE \"EMAIL\" = ? AND \"PASSWORD\" = ?";
@@ -269,8 +294,8 @@ private Integer getChID (String usr, String pswd){
         conn = DriverManager.getConnection(url,"adam","adam");
         
         PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
-        stmnt.setString(1,usr);
-        stmnt.setString(2,pswd);
+        stmnt.setString(1,email);
+        stmnt.setString(2,password);
         ResultSet rs = stmnt.executeQuery();
         if (rs.next()){
             Integer temp = rs.getInt(1);   
@@ -288,7 +313,7 @@ private Integer getChID (String usr, String pswd){
 /*
 * This function gets admin's ID to pass it to his dashboard, so the queries may be executed
 */
-private Integer getAdID (String usr, String pswd){
+private Integer getAdID (String email, String password){
     Connection conn;
     String url = "jdbc:derby://localhost:1527/GCUBake";
     String getIDQuery = "SELECT \"IDADMIN\" FROM \"ADMINS\" WHERE \"EMAIL\" = ? AND \"PASSWORD\" = ?"; //Unfortunately we can't do ? in the place of table name so we have to copy paste that
@@ -297,8 +322,8 @@ private Integer getAdID (String usr, String pswd){
         conn = DriverManager.getConnection(url,"adam","adam");
         
         PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
-        stmnt.setString(1,usr);
-        stmnt.setString(2,pswd);
+        stmnt.setString(1,email);
+        stmnt.setString(2,password);
         ResultSet rs = stmnt.executeQuery();
         if (rs.next()){
             Integer temp = rs.getInt(1);   
@@ -316,7 +341,7 @@ private Integer getAdID (String usr, String pswd){
 /*
 * This function gets customer's ID to pass it to his dashboard, so the queries may be executed
 */
-private Integer getCuID (String usr, String pswd){
+private Integer getCuID (String email, String password){
     Connection conn;
     String url = "jdbc:derby://localhost:1527/GCUBake";
     String getIDQuery = "SELECT \"IDCUSTOMER\" FROM \"CUSTOMERS\" WHERE \"EMAIL\" = ? AND \"PASSWORD\" = ?"; //Unfortunately we can't do ? in the place of table name so we have to copy paste that
@@ -325,8 +350,8 @@ private Integer getCuID (String usr, String pswd){
         conn = DriverManager.getConnection(url,"adam","adam");
         
         PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
-        stmnt.setString(1,usr);
-        stmnt.setString(2,pswd);
+        stmnt.setString(1,email);
+        stmnt.setString(2,password);
         ResultSet rs = stmnt.executeQuery();
         if (rs.next()){
             Integer temp = rs.getInt(1);   
@@ -345,8 +370,8 @@ private Integer getCuID (String usr, String pswd){
 // ******************************** END OF GROUP'S FUNCTIONS **************************
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        String username = usernameText.getText();
-        String password = new String (passwordText.getPassword());
+        String username = EMAIL.getText();
+        String password = new String (PASSWORD.getPassword());
         Connection conn;
         String url = "jdbc:derby://localhost:1527/GCUBake";
         
@@ -366,7 +391,7 @@ private Integer getCuID (String usr, String pswd){
                         Integer AdminID = getAdID(username,password);
                         System.out.println(AdminID);
                         if (AdminID !=0 ){
-                        Main_Admin mainAd = new Main_Admin(AdminID.toString());
+                        A_Dashboard mainAd = new A_Dashboard(AdminID.toString());
                         mainAd.setVisible(true);
                         mainAd.pack();
                         mainAd.setLocationRelativeTo(null);
@@ -380,7 +405,7 @@ private Integer getCuID (String usr, String pswd){
                         System.out.println(ChefID);
                         if (ChefID != 0) {
                         String schID = ChefID.toString();
-                        Main_chef mainCh = new Main_chef(schID);
+                        Ch_Dashboard mainCh = new Ch_Dashboard(schID);
                         mainCh.setVisible(true);
                         mainCh.pack();
                         mainCh.setLocationRelativeTo(null);
@@ -388,14 +413,18 @@ private Integer getCuID (String usr, String pswd){
                         this.dispose();
                         }
                     } else {
-                        //THAT'S YOURS TO FIGURE OUT, BASICALLY COPY PASTE FROM ABOVE BUT ANALYZE IT FOR YOURSELF
                         if (custVer(rsC,username,password)){
-                        Main main = new Main();
-                        main.setVisible(true);
-                        main.pack();
-                        main.setLocationRelativeTo(null);
-                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        this.dispose();
+                            Integer CusID = getCuID(username,password);
+                            System.out.println(CusID);
+                            if (CusID != 0){
+                            String custID = CusID.toString();
+                            Main mainCus = new Main(custID);
+                            mainCus.setVisible(true);
+                            mainCus.pack();
+                            mainCus.setLocationRelativeTo(null);
+                            mainCus.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            this.dispose();
+                        }
                      } else {
                             JOptionPane.showMessageDialog(rootPane,"Username do not match OR You have not registered yet");
                         }
@@ -412,13 +441,13 @@ private Integer getCuID (String usr, String pswd){
             
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
-    private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
+    private void EMAILActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMAILActionPerformed
     // TODO add your handling code here:
-    }//GEN-LAST:event_usernameTextActionPerformed
+    }//GEN-LAST:event_EMAILActionPerformed
 
-    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextActionPerformed
+    private void PASSWORDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSWORDActionPerformed
+    // TODO add your handling code here:
+    }//GEN-LAST:event_PASSWORDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,6 +475,7 @@ private Integer getCuID (String usr, String pswd){
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
@@ -454,6 +484,8 @@ private Integer getCuID (String usr, String pswd){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField EMAIL;
+    private javax.swing.JPasswordField PASSWORD;
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelClose;
@@ -462,8 +494,6 @@ private Integer getCuID (String usr, String pswd){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JPasswordField passwordText;
     private javax.swing.JLabel usernameLabel;
-    private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 }

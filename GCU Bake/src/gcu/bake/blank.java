@@ -12,12 +12,7 @@ import javax.swing.JFrame;
  * @author Group A4
  */
 public class blank extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Main_chef
-     * @param chefID
-     */
-    public blank() {
+ blank() {
         initComponents();
     }
 

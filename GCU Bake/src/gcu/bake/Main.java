@@ -1,16 +1,20 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package gcu.bake;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.text.SimpleDateFormat;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -20,16 +24,36 @@ public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
+     * @param CustID
      */
-    public Main() {
+    private final String cusID;
+    public Main(String CustID){
         initComponents();
+        cusID = CustID;
         this.setLocationRelativeTo(null);
+        lessonsComboBoxFillUp();
     }
     
-    public Main(String username){
-        initComponents();
-        User.setText(username);
-        this.setLocationRelativeTo(null);
+    private void lessonsComboBoxFillUp(){
+        //appointmentButton
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/GCUBake","adam","adam");
+            String q = "SELECT LESSONNAME AS \"Name\" FROM LESSONS";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(q);
+            while(rs.next()){
+                String o = rs.getString(1);
+                comboBox.addItem(o);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    
+
+    private Main() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -41,17 +65,19 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
         jPanel1 = new javax.swing.JPanel();
         Close = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
         Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        treatmentUpdate = new javax.swing.JTextField();
+        Desktop = new javax.swing.JTextField();
         comboBox = new javax.swing.JComboBox<>();
         appointmentButton = new javax.swing.JButton();
         checkAppointmentStatus = new javax.swing.JButton();
-        User = new javax.swing.JTextField();
         checkAppointmentStatus1 = new javax.swing.JButton();
+        date = new com.toedter.calendar.JDateChooser();
+        checkAppointmentStatus2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -84,19 +110,18 @@ public class Main extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
-        treatmentUpdate.setBackground(new java.awt.Color(204, 204, 204));
-        treatmentUpdate.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        treatmentUpdate.setForeground(new java.awt.Color(0, 204, 0));
-        treatmentUpdate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        treatmentUpdate.addActionListener(new java.awt.event.ActionListener() {
+        Desktop.setBackground(new java.awt.Color(204, 204, 204));
+        Desktop.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Desktop.setForeground(new java.awt.Color(255, 255, 153));
+        Desktop.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Desktop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                treatmentUpdateActionPerformed(evt);
+                DesktopActionPerformed(evt);
             }
         });
 
         comboBox.setBackground(new java.awt.Color(102, 0, 102));
         comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose a Lesson...", "Baking Cookies", "Baking Cake", "Learning Evening Baking" }));
         comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxActionPerformed(evt);
@@ -105,7 +130,7 @@ public class Main extends javax.swing.JFrame {
 
         appointmentButton.setBackground(new java.awt.Color(102, 0, 102));
         appointmentButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        appointmentButton.setText("Book a Lesson");
+        appointmentButton.setText("Book an Appointment");
         appointmentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appointmentButtonActionPerformed(evt);
@@ -114,23 +139,33 @@ public class Main extends javax.swing.JFrame {
 
         checkAppointmentStatus.setBackground(new java.awt.Color(102, 0, 102));
         checkAppointmentStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        checkAppointmentStatus.setText("Check Lesson status");
+        checkAppointmentStatus.setText("Upcoming Appointments");
+        checkAppointmentStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkAppointmentStatusMouseClicked(evt);
+            }
+        });
         checkAppointmentStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkAppointmentStatusActionPerformed(evt);
             }
         });
 
-        User.setBackground(new java.awt.Color(44, 62, 80));
-        User.setText("antrasis");
-        User.setBorder(null);
-
         checkAppointmentStatus1.setBackground(new java.awt.Color(102, 0, 102));
         checkAppointmentStatus1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        checkAppointmentStatus1.setText("Cancel Lesson");
+        checkAppointmentStatus1.setText("Cancel Appointment");
         checkAppointmentStatus1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkAppointmentStatus1ActionPerformed(evt);
+            }
+        });
+
+        checkAppointmentStatus2.setBackground(new java.awt.Color(102, 0, 102));
+        checkAppointmentStatus2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkAppointmentStatus2.setText("History of Appointments");
+        checkAppointmentStatus2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkAppointmentStatus2ActionPerformed(evt);
             }
         });
 
@@ -139,39 +174,43 @@ public class Main extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(appointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                            .addComponent(comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(63, 63, 63)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(checkAppointmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(checkAppointmentStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(treatmentUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                                .addComponent(appointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checkAppointmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(checkAppointmentStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checkAppointmentStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(treatmentUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(appointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkAppointmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkAppointmentStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(appointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkAppointmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(checkAppointmentStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkAppointmentStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -232,59 +271,93 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_MinimizeMouseClicked
 
     private void checkAppointmentStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAppointmentStatusActionPerformed
-        String vardas = User.getText().toString();
-        BufferedReader br = null;
-
-        try{
-            br = new BufferedReader(new FileReader(vardas));
-            String registeredUsername = br.readLine();
-            String registeredPassword = br.readLine();
-            String registeredFullName = br.readLine();
-            String registeredAge = br.readLine();
-            String registeredEmail = br.readLine();
-            String registeredRePassword = br.readLine();
-            String pause = br.readLine();
-            String next = br.readLine();
-
-            if (next.equals("777")){
-                treatmentUpdate.setText("pimpalas");
-            }
-            else{
-                treatmentUpdate.setText("putka");
-            }
-
-            br.close();
-
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane,"You dont have any treatments");
-        }
+        
     }//GEN-LAST:event_checkAppointmentStatusActionPerformed
 
-    private void treatmentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treatmentUpdateActionPerformed
+    private void DesktopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesktopActionPerformed
 
-    }//GEN-LAST:event_treatmentUpdateActionPerformed
+    }//GEN-LAST:event_DesktopActionPerformed
 
     private void checkAppointmentStatus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAppointmentStatus1ActionPerformed
-        // TODO add your handling code here:
+        String selection = comboBox.getSelectedItem().toString();
+        Connection conn;
+        Integer ID = 0;
+        String url = "jdbc:derby://localhost:1527/GCUBake";
+        try {
+            conn = DriverManager.getConnection(url,"adam","adam");
+            String getIDQuery = "SELECT IDLESSON FROM \"LESSONS\" WHERE \"LESSONNAME\" = ?";
+            PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
+            stmnt.setString(1, selection);
+            ResultSet rs = stmnt.executeQuery();
+            while (rs.next()){
+                ID=rs.getInt(1);
+            }
+            String sendIDQuery = "DELETE FROM \"APPOINTMENTS\" WHERE \"LESSONID\" = ? ";
+            PreparedStatement stSendIDQuery = conn.prepareStatement(sendIDQuery);
+            stSendIDQuery.setInt(1, ID);
+            stSendIDQuery.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_checkAppointmentStatus1ActionPerformed
 
     private void appointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentButtonActionPerformed
-        String selectedValue = comboBox.getSelectedItem().toString();
-        String vardas = User.getText().toString();
-
-        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+        String selection = comboBox.getSelectedItem().toString();
+        Integer ID = 0;
+        Connection conn;
+        String url = "jdbc:derby://localhost:1527/GCUBake";
         try {
-            Scanner sc = new Scanner (new FileReader(selectedValue));
+            conn = DriverManager.getConnection(url,"adam","adam");
+            String getIDQuery = "SELECT IDLESSON FROM \"LESSONS\" WHERE \"LESSONNAME\" = ?";
+            PreparedStatement stmnt = conn.prepareStatement(getIDQuery);
+            stmnt.setString(1, selection);
+            ResultSet rs = stmnt.executeQuery();
+            while (rs.next()){
+                ID=rs.getInt(1);
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String appDate = sdf.format(date.getDate());
+            
+            System.out.println(appDate);
+            System.out.println(cusID);
+            System.out.println(ID);
+            
+            String sendData = "INSERT INTO \"APPOINTMENTS\" (\"CUSTOMERID\", \"LESSONID\", \"DATE\", \"STATUS\") VALUES (?,?,?,?)";
+            PreparedStatement stSendData = conn.prepareStatement(sendData);
+            stSendData.setString(1, cusID);
+            stSendData.setInt(2, ID);
+            stSendData.setString(3, appDate);
+            stSendData.setString(4, "Beginner");
+            stSendData.execute();
+            
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane,"You dont have any treatments");
-        }
+        
+        Desktop.setText("Appointment Booking Completed!");
     }//GEN-LAST:event_appointmentButtonActionPerformed
 
     private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
 
     }//GEN-LAST:event_comboBoxActionPerformed
+
+    private void checkAppointmentStatus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAppointmentStatus2ActionPerformed
+        Cus_historyApps historyApps = new Cus_historyApps(cusID);
+        historyApps.setVisible(true);
+        historyApps.pack();
+        historyApps.setLocationRelativeTo(null);
+        historyApps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_checkAppointmentStatus2ActionPerformed
+
+    private void checkAppointmentStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkAppointmentStatusMouseClicked
+        Cus_upcApps upcApps = new Cus_upcApps(cusID);
+        upcApps.setVisible(true);
+        upcApps.pack();
+        upcApps.setLocationRelativeTo(null);
+        upcApps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_checkAppointmentStatusMouseClicked
         
     /**
      * @param args the command line arguments
@@ -323,15 +396,17 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
+    private javax.swing.JTextField Desktop;
     private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
-    private javax.swing.JTextField User;
     private javax.swing.JButton appointmentButton;
     private javax.swing.JButton checkAppointmentStatus;
     private javax.swing.JButton checkAppointmentStatus1;
+    private javax.swing.JButton checkAppointmentStatus2;
     private javax.swing.JComboBox<String> comboBox;
+    private com.toedter.calendar.JDateChooser date;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField treatmentUpdate;
     // End of variables declaration//GEN-END:variables
 }
