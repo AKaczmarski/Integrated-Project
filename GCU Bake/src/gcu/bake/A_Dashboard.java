@@ -168,7 +168,7 @@ public class A_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_lessonsButtonActionPerformed
 
     private void lessonsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lessonsButtonMouseClicked
-        A_appointmentsDashboard x = new A_appointmentsDashboard(saID);
+        A_Appointments x = new A_Appointments(saID);
         x.setVisible(true);
         x.pack();
         x.setLocationRelativeTo(null);

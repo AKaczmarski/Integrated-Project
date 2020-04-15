@@ -35,9 +35,7 @@ public class A_newLessonForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Close = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
-        Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         chIdStorage = new javax.swing.JLabel();
         newLName = new javax.swing.JTextField();
@@ -56,29 +54,9 @@ public class A_newLessonForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 102));
 
-        Close.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Close.setForeground(new java.awt.Color(255, 255, 255));
-        Close.setText("X");
-        Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CloseMouseClicked(evt);
-            }
-        });
-
         Title.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("GCUBake");
-
-        Minimize.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
-        Minimize.setForeground(new java.awt.Color(255, 255, 255));
-        Minimize.setText("-");
-        Minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MinimizeMouseClicked(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -192,27 +170,18 @@ public class A_newLessonForm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(270, Short.MAX_VALUE)
-                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Minimize)
-                .addGap(33, 33, 33)
-                .addComponent(Close)
-                .addGap(39, 39, 39))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Title)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Minimize)
-                        .addComponent(Close, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Title)
+                .addGap(14, 14, 14)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(162, 162, 162))
         );
@@ -230,14 +199,6 @@ public class A_newLessonForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_CloseMouseClicked
-
-    private void MinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeMouseClicked
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_MinimizeMouseClicked
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
@@ -277,7 +238,7 @@ public class A_newLessonForm extends javax.swing.JFrame {
             pst2.setString(3, desc);
             pst2.setDouble(4,price);
             pst2.executeUpdate();
-           
+
         } catch (SQLException e){
             System.out.println(e);
         } finally {
@@ -288,7 +249,7 @@ public class A_newLessonForm extends javax.swing.JFrame {
                 x.setLocationRelativeTo(null);
                 x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.dispose();
-                
+
             } catch (Exception e) {
                 System.out.println("ERROR");
             }
@@ -309,8 +270,6 @@ public class A_newLessonForm extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Close;
-    private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel chIdStorage;

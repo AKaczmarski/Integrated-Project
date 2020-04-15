@@ -42,14 +42,12 @@ public class A_Lessons extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Close = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
-        Minimize = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         chIdStorage = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        delLessonButton = new javax.swing.JButton();
         addLesson = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -57,29 +55,9 @@ public class A_Lessons extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 102));
 
-        Close.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Close.setForeground(new java.awt.Color(255, 255, 255));
-        Close.setText("X");
-        Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CloseMouseClicked(evt);
-            }
-        });
-
         Title.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("GCUBake");
-
-        Minimize.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
-        Minimize.setForeground(new java.awt.Color(255, 255, 255));
-        Minimize.setText("-");
-        Minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MinimizeMouseClicked(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -102,8 +80,13 @@ public class A_Lessons extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Delete Lesson");
+        delLessonButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delLessonButton.setText("Delete Lesson");
+        delLessonButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delLessonButtonMouseClicked(evt);
+            }
+        });
 
         addLesson.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addLesson.setText("Add Lesson");
@@ -115,6 +98,11 @@ public class A_Lessons extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Change price");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,8 +119,8 @@ public class A_Lessons extends javax.swing.JFrame {
                                 .addComponent(addLesson)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
+                        .addComponent(delLessonButton)
                         .addGap(137, 137, 137)
                         .addComponent(backButton)))
                 .addContainerGap())
@@ -147,7 +135,7 @@ public class A_Lessons extends javax.swing.JFrame {
                     .addComponent(chIdStorage)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(backButton)
-                        .addComponent(jButton1)
+                        .addComponent(delLessonButton)
                         .addComponent(addLesson)
                         .addComponent(jButton3)))
                 .addContainerGap())
@@ -157,29 +145,18 @@ public class A_Lessons extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(401, Short.MAX_VALUE)
-                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167)
-                .addComponent(Minimize)
-                .addGap(33, 33, 33)
-                .addComponent(Close)
-                .addGap(34, 34, 34))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Title)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Minimize)
-                            .addComponent(Close, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addGap(9, 9, 9)))
+                .addGap(21, 21, 21)
+                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -217,13 +194,23 @@ public class A_Lessons extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonMouseClicked
 
-    private void MinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeMouseClicked
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_MinimizeMouseClicked
+    private void delLessonButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delLessonButtonMouseClicked
+        A_deleteLesson x = new A_deleteLesson(saID);
+        x.setVisible(true);
+        x.pack();
+        x.setLocationRelativeTo(null);
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_delLessonButtonMouseClicked
 
-    private void CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_CloseMouseClicked
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        A_changePrice x = new A_changePrice(saID);
+        x.setVisible(true);
+        x.pack();
+        x.setLocationRelativeTo(null);
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
     private void dataFill(){
         Connection conn = null;
         PreparedStatement pst = null;
@@ -266,13 +253,11 @@ public class A_Lessons extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Close;
-    private javax.swing.JLabel Minimize;
     private javax.swing.JLabel Title;
     private javax.swing.JButton addLesson;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel chIdStorage;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton delLessonButton;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

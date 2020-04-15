@@ -108,7 +108,7 @@ public class Cus_historyApps extends javax.swing.JFrame {
 
         Title.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
-        Title.setText("GCUBake");
+        Title.setText("GCUBake - Appointments History");
 
         Minimize.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
         Minimize.setForeground(new java.awt.Color(255, 255, 255));
@@ -176,8 +176,8 @@ public class Cus_historyApps extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167)
+                .addComponent(Title)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Minimize)
                 .addGap(33, 33, 33)
                 .addComponent(Close)
@@ -228,7 +228,7 @@ public class Cus_historyApps extends javax.swing.JFrame {
     }//GEN-LAST:event_MinimizeMouseClicked
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        Main mainCus = new Main(cusID);
+        Cus_Dashboard mainCus = new Cus_Dashboard(cusID);
         mainCus.setVisible(true);
         mainCus.pack();
         mainCus.setLocationRelativeTo(null);

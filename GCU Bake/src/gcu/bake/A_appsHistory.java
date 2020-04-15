@@ -205,7 +205,7 @@ private void dataFill (){
         } 
     }
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
-        A_appointmentsDashboard x = new A_appointmentsDashboard(saID);
+        A_Appointments x = new A_Appointments(saID);
         x.setVisible(true);
         x.pack();
         x.setLocationRelativeTo(null);

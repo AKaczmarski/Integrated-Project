@@ -219,8 +219,6 @@ public class A_upcApps extends javax.swing.JFrame {
                     }
 
                 }
-            } else {
-                JOptionPane.showMessageDialog(null,"Wrong date");
             }
         } else {
             JOptionPane.showMessageDialog(null,"Wrong appointment ID");
@@ -256,13 +254,11 @@ public class A_upcApps extends javax.swing.JFrame {
                 }
 
             }
-        } else {
-            JOptionPane.showMessageDialog(null,"Wrong appointment ID");
         }
     }//GEN-LAST:event_cancelAppMouseClicked
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        A_appointmentsDashboard x = new A_appointmentsDashboard(saID);
+        A_Appointments x = new A_Appointments(saID);
         x.setVisible(true);
         x.pack();
         x.setLocationRelativeTo(null);

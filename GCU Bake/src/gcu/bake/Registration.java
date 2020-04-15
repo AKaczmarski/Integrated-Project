@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,88 +37,47 @@ public class Registration extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabelClose1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabelMin1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        FIRSTNAME = new javax.swing.JTextArea();
         Register = new javax.swing.JButton();
         jLabelLogin = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        MOBILE = new javax.swing.JTextArea();
-        PASSWORD = new javax.swing.JPasswordField();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        EMAIL = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        LASTNAME = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
+        FIRSTNAME = new javax.swing.JTextField();
+        MOBILE = new javax.swing.JTextField();
+        LASTNAME = new javax.swing.JTextField();
+        PASSWORD = new javax.swing.JPasswordField();
+        EMAIL = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 102));
 
-        jLabelClose1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabelClose1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelClose1.setText("X");
-        jLabelClose1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelClose1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelClose1MouseClicked(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Registration ");
-
-        jLabelMin1.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
-        jLabelMin1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelMin1.setText("-");
-        jLabelMin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelMin1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMin1MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelMin1)
-                .addGap(29, 29, 29)
-                .addComponent(jLabelClose1)
-                .addGap(27, 27, 27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelClose1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelMin1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 51));
-
-        jScrollPane9.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        FIRSTNAME.setBackground(new java.awt.Color(204, 204, 204));
-        FIRSTNAME.setColumns(20);
-        FIRSTNAME.setRows(5);
-        jScrollPane9.setViewportView(FIRSTNAME);
 
         Register.setBackground(new java.awt.Color(102, 0, 102));
         Register.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -140,32 +100,6 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane8.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        MOBILE.setBackground(new java.awt.Color(204, 204, 204));
-        MOBILE.setColumns(20);
-        MOBILE.setRows(5);
-        MOBILE.setMaximumSize(new java.awt.Dimension(2, 2));
-        jScrollPane8.setViewportView(MOBILE);
-
-        PASSWORD.setBackground(new java.awt.Color(204, 204, 204));
-        PASSWORD.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        PASSWORD.setMinimumSize(new java.awt.Dimension(4, 22));
-        PASSWORD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PASSWORDActionPerformed(evt);
-            }
-        });
-
-        jScrollPane12.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane12.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        EMAIL.setBackground(new java.awt.Color(204, 204, 204));
-        EMAIL.setColumns(20);
-        EMAIL.setRows(5);
-        jScrollPane12.setViewportView(EMAIL);
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Mobile Phone:");
@@ -182,17 +116,15 @@ public class Registration extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("First Name:");
 
-        jScrollPane10.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane10.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        LASTNAME.setBackground(new java.awt.Color(204, 204, 204));
-        LASTNAME.setColumns(20);
-        LASTNAME.setRows(5);
-        jScrollPane10.setViewportView(LASTNAME);
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Last Name:");
+
+        LASTNAME.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LASTNAMEActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -209,19 +141,18 @@ public class Registration extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane9)
-                                    .addComponent(jScrollPane8))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(FIRSTNAME, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                    .addComponent(MOBILE, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(60, 60, 60)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PASSWORD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jScrollPane12))
-                        .addGap(116, 116, 116))
+                                    .addComponent(LASTNAME)
+                                    .addComponent(PASSWORD, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                            .addComponent(EMAIL)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabelLogin)
@@ -233,23 +164,23 @@ public class Registration extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(PASSWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addComponent(LASTNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FIRSTNAME))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(MOBILE)
+                    .addComponent(PASSWORD))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(EMAIL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Register, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,14 +205,6 @@ public class Registration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabelClose1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelClose1MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabelClose1MouseClicked
-
-    private void jLabelMin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMin1MouseClicked
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_jLabelMin1MouseClicked
-
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         Connection conn;
         String url = "jdbc:derby://localhost:1527/GCUBake";
@@ -298,7 +221,8 @@ public class Registration extends javax.swing.JFrame {
             sst.setString(4, new String(PASSWORD.getPassword()));
             sst.setString(5, MOBILE.getText());
             sst.execute();
-            System.out.println("Registration Successful");            
+            System.out.println("Registration Successful"); 
+            JOptionPane.showMessageDialog(null,"Registration Successful");
             Login l = new Login();
             l.setVisible(true);
             l.pack();
@@ -319,16 +243,16 @@ public class Registration extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabelLoginMouseClicked
 
-    private void PASSWORDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSWORDActionPerformed
+    private void LASTNAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LASTNAMEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PASSWORDActionPerformed
+    }//GEN-LAST:event_LASTNAMEActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea EMAIL;
-    private javax.swing.JTextArea FIRSTNAME;
-    private javax.swing.JTextArea LASTNAME;
-    private javax.swing.JTextArea MOBILE;
+    private javax.swing.JTextField EMAIL;
+    private javax.swing.JTextField FIRSTNAME;
+    private javax.swing.JTextField LASTNAME;
+    private javax.swing.JTextField MOBILE;
     private javax.swing.JPasswordField PASSWORD;
     private javax.swing.JButton Register;
     private javax.swing.JLabel jLabel3;
@@ -337,14 +261,8 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelClose1;
     private javax.swing.JLabel jLabelLogin;
-    private javax.swing.JLabel jLabelMin1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     // End of variables declaration//GEN-END:variables
 }

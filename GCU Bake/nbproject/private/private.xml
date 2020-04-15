@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/Main.java</file>
-            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/Ch_appsHistory.java</file>
+            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/Registration.java</file>
+            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/A_Lessons.java</file>
             <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/Login.java</file>
+            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/Cus_upcApps.java</file>
+            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/A_deleteCustomer.java</file>
+            <file>file:/C:/Users/akacz/Documents/GitHub/Integrated-Project/GCU%20Bake/src/gcu/bake/Cus_Dashboard.java</file>
         </group>
     </open-files>
 </project-private>
